@@ -1,6 +1,7 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { join } from 'path';
 import * as process from 'process';
+import { secrets } from './secrets';
 
 const env = process.env;
 
@@ -48,11 +49,10 @@ export const config = {
   db: {
     default: {
       type: 'mysql',
-      host: env.TR_DB_HOST || '127.0.0.1',
-      port: parseInt(env.TR_DB_PORT, 10) || 3306,
-      username: env.TR_DB_USER || 'root',
-      password: env.TR_DB_PASSWORD || '',
-      database: env.TR_DB_DATABASE || 'tr_dev',
+      extra: { socketPath: secrets.socketPath },
+      username: secrets.username,
+      password: secrets.password,
+      database: secrets.database,
       charset: 'utf8mb4',
       synchronize: false,
       logging: false,
