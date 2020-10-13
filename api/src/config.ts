@@ -10,7 +10,7 @@ const getBoolOrDefault = (value: string, defaultValue: boolean) => (value ? valu
 export const config = {
   env: env.NODE_ENV || 'dev',
   port: parseInt(env.TR_PORT, 10) || 8080,
-  secret: env.TR_SECRET || 'secret',
+  secret: secrets.serverSecret,
   virtualHost: env.TR_VIRTUAL_HOST || 'http://localhost:8080',
   publicDir: env.TR_PUBLIC_DIR || join(__dirname, '../public'),
   templatesDir: env.TR_TEMPLATES_DIR || join(__dirname, '../src/templates'),
